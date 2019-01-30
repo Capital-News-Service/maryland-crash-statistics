@@ -1,5 +1,10 @@
 # maryland-crash-statistics
 
+Made by Jake Gluck [jagluck.github.io](jagluck.github.io).   
+jakeagluck@gmail.com jagluck@terpmail.umd.edu
+
+Reporting and data work done by Lindsay Huth, Angela Roberts and Jake Gluck 
+
 Capital News Service
 
 The article - http://cnsmaryland.org/pedestrian-accidents-pile-up-on-maryland-roads/
