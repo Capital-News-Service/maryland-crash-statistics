@@ -3,7 +3,7 @@
 Made by Jake Gluck [jagluck.github.io](jagluck.github.io).   
 jakeagluck@gmail.com jagluck@terpmail.umd.edu
 
-Reporting and data work done by Lindsay Huth, Angela Roberts and Jake Gluck 
+Reporting and data work done by Lindsay Huth, Angela Roberts and Jake Gluck.
 
 Capital News Service
 
