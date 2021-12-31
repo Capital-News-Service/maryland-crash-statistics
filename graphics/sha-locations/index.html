@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>CNS Pedestrian Clusters</title>
+  <title>SHA Audit Locations</title>
 
    <!-- d3 import -->
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
-  <!-- Load leaflet.css -->
-  <link href="css/leaflet.css" rel="stylesheet">
-
-  <!-- Load leaflet.js -->
-  <script src="js/leaflet.js"></script>
-  <script src="js/leaflet-src.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
   <!-- Load our css -->
   <link href="css/css.css" rel="stylesheet">
@@ -181,10 +178,10 @@
 
 <body>
   <div id="container" style="min-width: 300px; max-width: 700px; display: flex;flex-direction: column; margin: 0 auto">
-  <h1>Locations of pedestrian accident clusters on US and MD state roads</h1>
+  <h1>State Highway Administration has conducted pedestrian safety audits at 22 locations</h1>
   <span style="height:8px; font-size:8pt; background-color:#fbd603; color:#fbd603;"></span><h3>BY JAKE GLUCK<a href="http://cnsmaryland.org" target="_blank" style="text-decoration:none;"> | CAPITAL NEWS SERVICE</a></h3>
   <h5>
-      These hotspot were located using a clustering algorithim on pedestrian accidents on US and MD state roads in the last three years. Click on the locations to view the hotspots highlighted in our story. View the code on the CNS Github
+    State Highway Administration officials said they have conducted safety audits along 22 one-mile stretches of state and U.S. roads where 10 pedestrian crashes have occurred over a 5-year period to determine if improvements are needed. Based on limited information provided by SHA, 17 are shown in blue on this map. (There are actually 18 stretches of road shown on the map; one audit area shown in Wheaton includes two disconnected roads). The agency did not provide enough information to precisely locate the other five, and they are not shown on this map. Those five locations included areas in downtown Silver Spring, Bethesda, Towson, Riverdale and Wheaton.
   </h5>
 
 
@@ -199,11 +196,15 @@
 
       var streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
 
-      var mymap = L.map('mapid', {
-        center: [39.1, -76.725],
-        zoom: 10,
-        layers: [streets]
-      });
+      var mymap = L.map('mapid').setView([39.1, -76.725], 10, [streets]);
+      var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+          maxZoom: 18,
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+              'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1
+      }).addTo(mymap);
                                        
         var baseMaps = {
         };
@@ -211,20 +212,16 @@
         var overlayMaps = {
         };
 
-        L.control.layers(baseMaps, overlayMaps).addTo(mymap);
-
       var track = new L.KML("SHA 1.kml", {async: true});
       var track2 = new L.KML("SHA 2.kml", {async: true});
       var track3 = new L.KML("SHA 3.kml", {async: true});
       mymap.addLayer(track);
       mymap.addLayer(track2);
       mymap.addLayer(track3);
-      var legend = L.control({position: 'topright'});
-
 
    </script>
 
-   <div id="source"><text><a href="http://cnsmaryland.org/home"><tspan>Source: Capital News Service</br></tspan></a></text></div>
+   <div id="source"><text><tspan>Source: State Highway Administration audit data</br></tspan></text></div>
 
 </div>
 
